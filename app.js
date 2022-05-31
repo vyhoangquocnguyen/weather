@@ -28,8 +28,6 @@ app.post("/",function(req,res){
             const icon = weatherData.weather[0].icon;
             const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
 
-            //const track = document.querySelector(".temperature");
-            //$(".temperatur").text(temo)
             res.write("<h1>The temperatur in " + query+ " is " + temp + " degree Celcius</h1>");
             res.write("<p> The weather is currently " + weatherDescription + "</p>")
             res.write("<img src=" +imageURL +">");
