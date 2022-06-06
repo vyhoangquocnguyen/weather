@@ -3,7 +3,8 @@
 import express from "express";
 import { get } from "https"; // native node modole for calling requrest
 import bodyParser from "body-parser";
-import { query } from "express";
+import 'dotenv/config' 
+
 // import fetch from "node-fetch";
 
 const app = express();
@@ -41,7 +42,7 @@ app.get("/", function(req, res){
 app.post("/",function(req,res){
     let query = req.body.cityName;
     obj.cityName = query;
-    const apiKEY = "c66ccd351fded94e211e161b45c799a2";
+    const apiKEY = process.env.WEATHER_API;
     const unit = "metric";
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKEY +"&units=" + unit;
     get(url, function(response){
