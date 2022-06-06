@@ -19,12 +19,12 @@ body {
     max-width: 460px;
 }
 
-.search {
+.card .search {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-button {
+.card button {
     margin: 0.5em;
     border-radius: 50%;
     border: none;
@@ -35,8 +35,11 @@ button {
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
+.card button:hover {
+    background: #7c7c7c6b;
+}
 
-input.search-bar {
+.card input.search-bar {
     border: none;
     padding: 0.5em 1em;
     background: #7c7c7c2b;
@@ -49,6 +52,4 @@ input.search-bar {
 
 }
 
-button:hover {
-    background: #7c7c7c6b;
-}
+

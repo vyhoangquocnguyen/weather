@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="card">
+        <form action ="/" method="post"class="search">
+            <input type="text" name="cityName"class="search-bar" placeholder="Search">
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        </form>
+        <div class="weather">
+            <h2 class="city">Weather in <%=cityName %> </h2>
+            <h1 class="temperature"><%= temperature %> °C</h1>
+            <img class="imageURL"src="<%= imageURL %> " alt="" srcset="">
+            <!-- <img src"" atr="" id="unplashImage"> -->
+            <div class="feelslike">Feels like <%= feelslike %> °C</div>
+            <div class="description">Currently <%= description %></div>
+            <div class="humidity">Humidity: <%= humidity %>%</div>
+            <div class="wind">Wind: <%= wind %> km/h</div>
+        </div>
+    </div>
+    <br/>
+
+    <script src="https://kit.fontawesome.com/a0f8d8fe41.js" crossorigin="anonymous"></script>
+</body>
+</html>
