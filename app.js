@@ -4,7 +4,7 @@ import express from "express";
 import { get } from "https"; // native node modole for calling requrest
 import bodyParser from "body-parser";
 import { query } from "express";
-
+// import fetch from "node-fetch";
 
 const app = express();
 
@@ -24,6 +24,7 @@ let obj = {
     feelslike:"",
     imageURL:""
 }
+
 app.get("/", function(req, res){
     res.render("weather",{
         cityName: obj.cityName,
@@ -60,6 +61,8 @@ app.post("/",function(req,res){
             // res.send();
         })
     })
+
+
 })
 
 app.listen(3000,function(){
