@@ -7,6 +7,8 @@ import 'dotenv/config'
 
 import fetch from "node-fetch";
 
+
+
 const app = express();
 
 
@@ -33,10 +35,27 @@ async function catchImage(){
     const unplashURL = 'https://api.unsplash.com/photos/random?orientation=landscape&query='
     + query +'&count=1&client_id=' + API_ID;
     const response = await fetch(unplashURL);
-    const jsondata = await response.json();
-    obj.backgroundURL= jsondata[0].urls.regular
+    try {
+        const jsondata = await response.json();
+        obj.backgroundURL= jsondata[0].urls.regular
+    }catch(error) {
+        console.log('error',error.message)
+    }
+    
 }
 
+// async function catchweather(){
+//     const apiKEY = process.env.WEATHER_API;
+//     const unit = "metric";
+//     const weatherURL = "https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKEY +"&units=" + unit;
+//     const response = await fetch(weatherURL)
+//     if(response.status >=200 && response.status <= 299){
+//         const jsondata = await response.json()
+//     }else {
+
+//     }
+    
+// }
 
 catchImage()
 
@@ -61,21 +80,26 @@ app.post("/",function(req,res){
     const apiKEY = process.env.WEATHER_API;
     const unit = "metric";
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKEY +"&units=" + unit;
-    get(url, function(response){
-        response.on("data", function(data){
-            const weatherData = JSON.parse(data)
-            obj.temp = weatherData.main.temp;
-            obj.weatherDescription = weatherData.weather[0].description;
-            obj.wind = weatherData.wind.speed;
-            obj.humidity = weatherData.main.humidity;
-            obj.feelslike = weatherData.main.feels_like;
-            obj.imageURL = "http://openweathermap.org/img/wn/" + weatherData.weather[0].icon + "@2x.png"
+     get(url, function(response){
+        if(response.statusCode >= 400){
+            return;
+        }
+        else{
+            response.on("data", function(data){
+                const weatherData = JSON.parse(data)
+                obj.temp = weatherData.main.temp;
+                obj.weatherDescription = weatherData.weather[0].description;
+                obj.wind = weatherData.wind.speed;
+                obj.humidity = weatherData.main.humidity;
+                obj.feelslike = weatherData.main.feels_like;
+                obj.imageURL = "http://openweathermap.org/img/wn/" + weatherData.weather[0].icon + "@2x.png"
 
-            res.redirect("/");
-         
-        })
+                res.redirect("/");
+            
+            }) 
+        }
     })
-    
+
 })
 
 app.listen(process.env.PORT || 3000,function(){
