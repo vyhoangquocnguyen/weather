@@ -5,6 +5,10 @@ body {
     height: 100vh;
     margin: 0;
     background: #222;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
     font-family: 'Roboto', sans-serif;
     font-size: 120%;
 }
