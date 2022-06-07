@@ -58,7 +58,6 @@ app.post("/",function(req,res){
     let query = req.body.cityName;
     obj.cityName = query;
     catchImage(query);
-    console.log(obj)
     const apiKEY = process.env.WEATHER_API;
     const unit = "metric";
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKEY +"&units=" + unit;
@@ -71,7 +70,6 @@ app.post("/",function(req,res){
             obj.humidity = weatherData.main.humidity;
             obj.feelslike = weatherData.main.feels_like;
             obj.imageURL = "http://openweathermap.org/img/wn/" + weatherData.weather[0].icon + "@2x.png"
-            console.log(obj);
 
             res.redirect("/");
          
