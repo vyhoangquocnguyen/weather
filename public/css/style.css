@@ -12,6 +12,10 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 120%;
 }
+footer{
+    text-align:center;
+    font-family: 'Roboto', sans-serif;
+}
 
 .card {
     background: #000000d0;
