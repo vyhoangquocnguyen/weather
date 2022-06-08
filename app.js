@@ -82,7 +82,7 @@ app.post("/",function(req,res){
     const url = "https://api.openweathermap.org/data/2.5/weather?q="+ query +"&appid="+ apiKEY +"&units=" + unit;
      get(url, function(response){
         if(response.statusCode >= 400){
-            return;
+            res.redirect("/404page");
         }
         else{
             response.on("data", function(data){
@@ -102,6 +102,13 @@ app.post("/",function(req,res){
 
 })
 
+app.get("/404page",function(req,res){
+    res.render("404page");
+
+})
+app.post("/404page", function(req,res){
+    res.redirect("/");
+})
 app.listen(process.env.PORT || 3000,function(){
     console.log("Server is running on port 3000");
 
